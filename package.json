@@ -1,0 +1,34 @@
+{
+  "name": "ld47-coder-dream",
+  "version": "1.0.0",
+  "description": "Game for LudumDare 47",
+  "scripts": {
+    "build-zip": "cd dist; zip -r build.zip ./*",
+    "dev": "webpack-dev-server --open --config webpack.dev.js --mode development",
+    "lintfix": "eslint --fix --quiet ./src/**/**.js",
+    "lint": "eslint --quiet ./src/**/**.js",
+    "build": "webpack --config webpack.prod.js",
+    "sprites": "spritesmith"
+  },
+  "author": "carystanley",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.3",
+    "eslint": "^7.0.0",
+    "expose-loader": "0.7.5",
+    "pre-commit": "^1.2.2",
+    "spritesmith-cli": "^1.1.2",
+    "spritesmith-texturepacker": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.35.3",
+    "webpack-cli": "3.3.2",
+    "webpack-dev-server": "^3.7.2",
+    "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {
+    "phaser": "^3.16.2"
+  },
+  "pre-commit": [
+    "lint"
+  ]
+}
