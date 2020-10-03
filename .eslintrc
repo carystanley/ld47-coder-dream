@@ -40,7 +40,6 @@
       "allow-null"
     ],
     "global-strict": 0,
-    "guard-for-in": 2,
     "indent": [
       2,
       4,

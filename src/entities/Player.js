@@ -22,7 +22,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
                 t.stop();
                 t.complete();
             });
-        } catch(e){}
+        } catch (e) {}
     }
 
     faceRight() {
