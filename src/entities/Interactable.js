@@ -1,8 +1,8 @@
 export default class Interactable extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, animationId, entityId, defaultAction, x, y) {
+    constructor(scene, animationId, entityId, defaultAction, x, y, scale) {
         super(scene, x, y, 'spritesheet');
         scene.add.existing(this);
-        this.scale = 4;
+        this.scale = scale;
         this.originY = 1;
         this.depth = this.y;
         this.anims.play(animationId);
@@ -23,5 +23,10 @@ export default class Interactable extends Phaser.Physics.Arcade.Sprite {
                 scene.onClickInteractable(this);
             }
         });
+    }
+
+    hide() {
+        this.disableInteractive();
+        this.alpha = 0;
     }
 }

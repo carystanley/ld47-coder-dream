@@ -35,7 +35,13 @@ class Preloader extends Phaser.Scene {
             { key: 'nerd-walking', prefix: 'nerd', start: 1, end: 8, frameRate, repeat: -1 },
             { key: 'computer', prefix: 'computer', start: 1, end: 1, frameRate },
             { key: 'exit-left', prefix: 'exit-left', start: 1, end: 1, frameRate },
-            { key: 'exit-right', prefix: 'exit-right', start: 1, end: 1, frameRate }
+            { key: 'exit-right', prefix: 'exit-right', start: 1, end: 1, frameRate },
+            { key: 'expression-one', prefix: 'expression-one', start: 1, end: 1, frameRate },
+            { key: 'expression-two', prefix: 'expression-two', start: 1, end: 1, frameRate },
+            { key: 'expression-three', prefix: 'expression-three', start: 1, end: 1, frameRate },
+            { key: 'expression-four', prefix: 'expression-four', start: 1, end: 1, frameRate },
+            { key: 'bracket-left', prefix: 'bracket-left', start: 1, end: 1, frameRate },
+            { key: 'bracket-right', prefix: 'bracket-right', start: 1, end: 1, frameRate }
         ]);
 
         this.scene.start('play');
