@@ -25,6 +25,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         } catch(e){}
     }
 
+    faceRight() {
+        this.setFlipX(false);
+    }
+
+    faceLeft() {
+        this.setFlipX(true);
+    }
+
     async moveTo (x, y) {
         const dx = x - this.x;
         const dy = y - this.y;
@@ -32,7 +40,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.cancelTweens();
         const distance = Math.sqrt((dx * dx) + (dy * dy));
         const time = distance / WALK_VELOCITY * 1000;
-        this.setFlipX(dx < 0);
+        if (dx > 0) {
+            this.faceRight();
+        } else {
+            this.faceLeft();
+        }
         this.anims.play('nerd-walking');
         await tweenPromise(this.scene, this, { x, y }, time);
         this.anims.play('nerd-idle');
