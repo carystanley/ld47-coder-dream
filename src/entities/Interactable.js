@@ -9,7 +9,7 @@ export default class Interactable extends Phaser.Physics.Arcade.Sprite {
         this.entityId = entityId;
         this.defaultAction = defaultAction;
 
-        this.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.width, this.height ), Phaser.Geom.Rectangle.Contains);
+        this.setInteractive();
         this.on('pointerover', (pointer, localX, localY, event) => {
             event.stopPropagation();
             scene.onOverInteractable(this);

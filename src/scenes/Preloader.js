@@ -33,7 +33,9 @@ class Preloader extends Phaser.Scene {
         this.setupSheetAnimations([
             { key: 'nerd-idle', prefix: 'nerd', start: 9, end: 9, frameRate },
             { key: 'nerd-walking', prefix: 'nerd', start: 1, end: 8, frameRate, repeat: -1 },
-            { key: 'computer', prefix: 'computer', start: 1, end: 1, frameRate }
+            { key: 'computer', prefix: 'computer', start: 1, end: 1, frameRate },
+            { key: 'exit-left', prefix: 'exit-left', start: 1, end: 1, frameRate },
+            { key: 'exit-right', prefix: 'exit-right', start: 1, end: 1, frameRate }
         ]);
 
         this.scene.start('play');

@@ -7,7 +7,7 @@ import Play from './scenes/Play.js';
 var config = {
     parent : 'game',
     type: Phaser.AUTO,
-    backgroundColor: '#cccccc',
+    backgroundColor: '#e4e4e4',
     width: 800,
     height: 600,
     physics: {
