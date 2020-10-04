@@ -1,9 +1,9 @@
 export default {
     startScene: 'Start',
     sceneStart: true,
-    sceneWizard: true,
-    sceneStuckGuy: true,
-    sceneForest: true,
+    sceneWizard: false,
+    sceneStuckGuy: false,
+    sceneForest: false,
 
     countSpaces: 0,
     countTabs: 0,
