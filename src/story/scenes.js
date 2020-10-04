@@ -36,7 +36,7 @@ export default {
 
     Wizard: (scene, config) => {
         setup(scene, config);
-        scene.wizard = new Interactable(scene, 'wizard', 'Wizard', 'Talk', 500, 400, 4);
+        scene.wizard = new Interactable(scene, 'wizard', 'Wizard', 'Talk', 400, 350, 6);
     },
 
     Forest: (scene, config) => { // https://github.com/denysdovhan/wtfjs
