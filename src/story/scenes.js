@@ -48,11 +48,19 @@ export default {
 
     Forest: (scene, config) => { // https://github.com/denysdovhan/wtfjs
         setup(scene, config);
+        const hasRightBracket = scene.getStoryState('hasRightBracket');
+        const hasLeftBracket = scene.getStoryState('hasLeftBracket');
+
         scene.expression1 = new Interactable(scene, 'expression-one', 'Expression1', '???', 230, 275, 1); // typeof NaN --> number
         scene.expression2 = new Interactable(scene, 'expression-two', 'Expression2', '???', 200, 400, 1); // Number(true) -> 1
         scene.expression3 = new Interactable(scene, 'expression-three', 'Expression3', '???', 573, 310, 1); // 3 > 2 > 1 -> false
         scene.expression4 = new Interactable(scene, 'expression-four', 'Expression4', '???', 550, 450, 1); // [] == ![] -> true
-        scene.leftBracket = new Interactable(scene, 'bracket-left', 'LeftBracket', 'Get', 340, 350, 1); // {
-        scene.rightBracket = new Interactable(scene, 'bracket-right', 'RightBracket', 'Get', 500, 400, 1); // }
+
+        if (!hasLeftBracket) {
+            scene.leftBracket = new Interactable(scene, 'bracket-left', 'LeftBracket', 'Get', 340, 350, 1); // {
+        }
+        if (!hasRightBracket) {
+            scene.rightBracket = new Interactable(scene, 'bracket-right', 'RightBracket', 'Get', 500, 400, 1); // }
+        }
     }
 }
