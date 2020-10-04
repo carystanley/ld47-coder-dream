@@ -32,6 +32,7 @@ export default {
     StuckGuy: (scene, config) => {
         setup(scene, config);
         scene.stuckGuy = new Interactable(scene, 'stuck-guy', 'StuckGuy', 'Talk', 500, 400, 4);
+        scene.errorGuy = new Interactable(scene, 'missingno', 'ErrorGuy', 'Talk', 200, 300, 4);
     },
 
     Wizard: (scene, config) => {

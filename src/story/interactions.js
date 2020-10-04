@@ -112,15 +112,21 @@ export default {
         });
     },
 
-    onTalkError: async (scene, state, player, entity) => {
-        // TODO
+    onTalkErrorGuy: async (scene, state, player, entity) => {
+        await scene.movePlayerTo(entity.x + 80, entity.y + 20);
+        scene.playerFaceLeft();
+        scene.startConversation(entity, {
+            dialog: [
+                { text: '0xE84FC80A580' }
+            ]
+        });
     },
 
-    onConsoleLogError: async (scene, state, player, entity) => {
+    onConsoleLogErrorGuy: async (scene, state, player, entity) => {
         // TODO Show Error message
     },
 
-    onRightBracketError: async (scene, state, player, entity) => {
+    onRightBracketErrorGuy: async (scene, state, player, entity) => {
         // TODO Fix error
     },
 
