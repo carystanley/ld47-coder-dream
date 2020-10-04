@@ -19,7 +19,6 @@ export default function sceneNavigation(scene, sceneId, direction) {
     do {
         cursor = mod(cursor + direction, totalScenes);
         count++;
-        console.error(!scene.getStoryState('scene' + scenesOrder[cursor]));
     } while (!scene.getStoryState('scene' + scenesOrder[cursor]) && (count < totalScenes));
     return scenesOrder[cursor];
 }

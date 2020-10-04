@@ -169,7 +169,7 @@ class Play extends Phaser.Scene {
             if (this.currentAction) {
                 this.resetAction();
             }
-            console.error('Event: ' +  event);
+            console.log('Event: ' +  event);
             if (storyInteractions[event]) {
                 await storyInteractions[event](this, {}, this.player, entity);
             } else {
