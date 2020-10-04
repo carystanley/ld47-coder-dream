@@ -31,8 +31,14 @@ export default {
 
     StuckGuy: (scene, config) => {
         setup(scene, config);
-        scene.stuckGuy = new Interactable(scene, 'stuck-stuck', 'StuckGuy', 'Talk', 550, 430, 6);
-        scene.errorGuy = new Interactable(scene, 'missingno', 'ErrorGuy', 'Talk', 200, 300, 6);
+        const hasWhiled = scene.getStoryState('hasWhiled');
+        const hasTrued = scene.getStoryState('hasTrued');
+        const stuckAnim = (hasWhiled && !hasTrued) ? 'stuck-run' : 'stuck-stuck';
+        scene.stuckGuy = new Interactable(scene, stuckAnim, 'StuckGuy', 'Talk', 550, 430, 6);
+
+        const hasFixedBracket = scene.getStoryState('hasFixedBracket');
+        const errorAnim = hasFixedBracket ? 'error-fix' : 'missingno';
+        scene.errorGuy = new Interactable(scene, errorAnim, 'ErrorGuy', 'Talk', 200, 300, 6);
     },
 
     Wizard: (scene, config) => {

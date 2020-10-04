@@ -46,7 +46,7 @@ class Preloader extends Phaser.Scene {
             { key: 'missingno', prefix: 'missingno', start: 1, end: 1, frameRate },
             { key: 'error-fix', prefix: 'error-fix', start: 1, end: 1, frameRate },
             { key: 'stuck-stuck', prefix: 'stuck-stuck', start: 1, end: 1, frameRate },
-            { key: 'stuck-run', prefix: 'stuck-run', start: 1, end: 6, frameRate }
+            { key: 'stuck-run', prefix: 'stuck-run', start: 1, end: 6, frameRate, repeat: -1 }
         ]);
 
         this.scene.start('play');
