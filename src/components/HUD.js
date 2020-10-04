@@ -28,10 +28,11 @@ export default class HUD {
     }
 
     addActionText(text, startX, action, stateFlag) {
-        const actionText = this.scene.add.bitmapText(startX, TEXT_Y, 'nokia-font', text);
+        var actionText = this.scene.add.bitmapText(startX, TEXT_Y, 'nokia-font', text);
         actionText.tint = 0x000000;
         this.container.add(actionText);
 
+        actionText.setInteractive();
         actionText.on('pointerup', (pointer, localX, localY, event) => {
             if (this.scene.mode !== 'dialog') {
                 event.stopPropagation();
@@ -39,10 +40,14 @@ export default class HUD {
             }
         });
 
-        if (this.scene.getStoryState(stateFlag)) {
-            actionText.setInteractive();
-        } else {
-            actionText.alpha = 0;
+        this.scene.game.storyState.on(stateFlag, (value) => {
+            if (value === true) {
+                actionText.setVisible(true);
+            }
+        })
+
+        if (!this.scene.getStoryState(stateFlag)) {
+            actionText.setVisible(false);
         }
     }
 }

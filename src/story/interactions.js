@@ -72,7 +72,7 @@ export default {
                 'spaces': [
                     { text: 'But tabs save file size!' },
                     { text: 'and developers can adjust' },
-                    { text: 'identation in their editor', key: 'spaces' }
+                    { text: 'indentation in their editor', key: 'spaces' }
                 ]
             }
         ];
