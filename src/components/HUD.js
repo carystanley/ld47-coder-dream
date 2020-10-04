@@ -19,25 +19,30 @@ export default class HUD {
         text.tint = 0x000000;
         container.add(text);
 
-        this.addActionText('while', 106, 'While');
-        this.addActionText('true', 200, 'True');
-        this.addActionText('{', 276, 'RightBracket');
-        this.addActionText('console.log', 300, 'ConsoleLog');
-        this.addActionText('(\'the end\')', 476, '');
-        this.addActionText('}', 642, 'LeftBraket');
+        this.addActionText('while', 106, 'While', 'hasWhile');
+        this.addActionText('true', 200, 'True', 'hasTrue');
+        this.addActionText('{', 276, 'RightBracket', 'hasRightBracket');
+        this.addActionText('console.log', 300, 'ConsoleLog', 'hasConsoleLog');
+        this.addActionText('(\'the end\')', 476, 'TheEnd', 'hasTheEnd');
+        this.addActionText('}', 642, 'LeftBraket', 'hasLeftBracket');
     }
 
-    addActionText(text, startX, action) {
+    addActionText(text, startX, action, stateFlag) {
         const actionText = this.scene.add.bitmapText(startX, TEXT_Y, 'nokia-font', text);
         actionText.tint = 0x000000;
         this.container.add(actionText);
 
-        actionText.setInteractive();
         actionText.on('pointerup', (pointer, localX, localY, event) => {
             if (this.scene.mode !== 'dialog') {
                 event.stopPropagation();
                 this.scene.setAction(action);
             }
         });
+
+        if (this.scene.getStoryState(stateFlag)) {
+            actionText.setInteractive();
+        } else {
+            actionText.alpha = 0;
+        }
     }
 }
