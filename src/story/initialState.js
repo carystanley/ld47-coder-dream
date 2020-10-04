@@ -6,8 +6,9 @@ export default {
 
     computerTalkCount: 0, // Remove
     hasDoneIntro: false,
-    countSpace: 0,
+    countSpaces: 0,
     countTabs: 0,
+    wizardTalkCount: 0,
     hasFixedBracket: false,
     hasWhiled: false,
     hasTrued: false,

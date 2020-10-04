@@ -7,6 +7,7 @@ export default class StoryState extends EventEmitter {
     }
 
     set(id, value) {
+        console.error(id + ' = ' + value);
         this.state[id] = value;
         this.emit(id, value);
     }

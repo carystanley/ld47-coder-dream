@@ -36,29 +36,77 @@ export default {
 
     onTalkWizard: async (scene, state, player, entity) => {
         // TODO loop till "both"
-        scene.startConversation(scene.computer, {
+        await scene.movePlayerTo(entity.x - 80, entity.y + 20);
+        scene.playerFaceRight();
+
+        const countTabs = scene.getStoryState('countTabs');
+        const countSpaces = scene.getStoryState('countSpaces');
+        const hasConsoleLog = scene.getStoryState('hasConsoleLog');
+
+        if (hasConsoleLog) {
+            const wizardTalkCount = scene.getStoryState('wizardTalkCount');
+            scene.setStoryState('wizardTalkCount', wizardTalkCount+ 1);
+            const wizardText = [
+                'BE GONE!!',
+                'Wretched Creature!',
+                'Away With You!!'
+            ][wizardTalkCount % 3];
+
+            scene.startConversation(scene.wizard, {
+                dialog: [
+                    { text: wizardText }
+                ]
+            });
+            return;
+        }
+
+        const wizardChoices = [
+            {
+                'tabs': [
+                    { text: 'But spaces have consistency!' },
+                    { text: 'They look the same' },
+                    { text: 'in every editor', key: 'tabs' }
+                ]
+            },
+            {
+                'spaces': [
+                    { text: 'But tabs save file size!' },
+                    { text: 'and developers can adjust' },
+                    { text: 'identation in their editor', key: 'spaces' }
+                ]
+            }
+        ];
+
+        if ((countTabs > 0) && (countSpaces > 0)) {
+            wizardChoices.push({
+                'both': [
+                    { text: 'Get away from me' },
+                    { text: 'you VILE creature!' },
+                    { text: 'and take this console.log with you', key: 'go' }
+                ]
+            });
+        }
+
+        scene.startConversation(scene.wizard, {
             dialog: [
-                { text: 'Dude, Seriously?' },
-                { text: 'Come on...', key: 'score' },
+                { text: 'YOU SHALL NOT PASS!' },
+                { text: 'You must answer my question' },
+                { text: 'That I may know if thee is' },
+                { text: 'FOE or FRIEND' },
                 {
-                    text: 'Will you help me?',
-                    responses: [
-                        {
-                            'not yet': [
-                                { text: 'bummer' }
-                            ]
-                        },
-                        {
-                            'sure': [
-                                { text: 'Awesome' }
-                            ]
-                        }
-                    ]
+                    text: 'Tabs or Spaces?',
+                    responses: wizardChoices
                 }
             ],
             actions: {
-                score: () => {
-
+                tabs: () => {
+                    scene.setStoryState('countTabs', countTabs + 1);
+                },
+                spaces: () => {
+                    scene.setStoryState('countSpaces', countSpaces + 1);
+                },
+                go: () => {
+                    scene.setStoryState('hasConsoleLog', true);
                 }
             }
         });
