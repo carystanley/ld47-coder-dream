@@ -2,28 +2,34 @@ import sceneNavigation from './sceneNavigation';
 
 export default {
     onTalkComputer: async (scene, state, player, entity) => {
-        /*
-        const count = scene.getStoryState('computerTalkCount');
-        scene.setStoryState('computerTalkCount', count + 1);
-        const computerText = [
-            '1',
-            '2',
-            '3'
-        ][count];
-        */
-
-
         await scene.movePlayerTo(entity.x - 80, entity.y + 20);
         scene.playerFaceRight();
 
-        var computerText = 'FILE NOT FOUND'
+        const hasConsoleLog = scene.getStoryState('hasConsoleLog');
+        const hasRightBracket = scene.getStoryState('hasRightBracket');
+        const hasLeftBracket = scene.getStoryState('hasLeftBracket');
+        const hasTrue = scene.getStoryState('hasTrue');
+        const hasWhile = scene.getStoryState('hasWhile');
+        var computerText = '';
 
-        // FILE NOT FOUND
-        // console.log - ''
-        // { console.log - SyntaxError: Unexpected end of input
-        // console.log } - SyntaxError: Unexpected token }
-        // { console.log } - ''
-        // while { console.log } - SyntaxError: Unexpected token {
+        if ( hasConsoleLog && hasRightBracket && hasLeftBracket && hasTrue && hasWhile ) {
+            // TODO END
+            return;
+        }
+
+        if (!hasConsoleLog && !hasRightBracket && !hasLeftBracket && !hasTrue && !hasWhile) {
+            computerText = 'FILE NOT FOUND';
+        } else if (hasConsoleLog && !hasRightBracket && !hasLeftBracket && !hasTrue && !hasWhile) {
+            computerText = '.....';
+        } else if (!hasRightBracket && hasLeftBracket) {
+            computerText = 'SyntaxError: Unexpected token }';
+        } else if (hasRightBracket && !hasLeftBracket) {
+            computerText = 'SyntaxError: Unexpected end of input';
+        } else if (hasRightBracket && hasLeftBracket && (hasWhile || hasTrue)) {
+            computerText = 'SyntaxError: Unexpected token {';
+        } else {
+            computerText = '....';
+        }
 
         scene.startConversation(scene.computer, {
             dialog: [

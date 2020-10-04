@@ -16,7 +16,7 @@ function setup(scene, config) {
 export default {
     Start: (scene, config) => {
         setup(scene, config);
-        scene.computer = new Interactable(scene, 'computer', 'Computer', 'Talk', 500, 400, 4);
+        scene.computer = new Interactable(scene, 'computer', 'Computer', 'Talk', 450, 400, 4);
         if (!config.enter) {
             scene.player.x = 200;
             scene.player.y = 350;
