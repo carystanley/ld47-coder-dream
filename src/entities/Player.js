@@ -1,8 +1,6 @@
 import { tweenPromise } from '../utils/async';
 
-const WALK_VELOCITY = 200;
-const Y_MAX = 500;
-const Y_MIN = 200;
+import { WALK_VELOCITY, Y_MAX, Y_MIN } from '../globals';
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene) {
