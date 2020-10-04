@@ -43,7 +43,10 @@ class Preloader extends Phaser.Scene {
             { key: 'expression-four', prefix: 'expression-four', start: 1, end: 1, frameRate },
             { key: 'bracket-left', prefix: 'bracket-left', start: 1, end: 1, frameRate },
             { key: 'bracket-right', prefix: 'bracket-right', start: 1, end: 1, frameRate },
-            { key: 'missingno', prefix: 'missingno', start: 1, end: 1, frameRate }
+            { key: 'missingno', prefix: 'missingno', start: 1, end: 1, frameRate },
+            { key: 'error-fix', prefix: 'error-fix', start: 1, end: 1, frameRate },
+            { key: 'stuck-stuck', prefix: 'stuck-stuck', start: 1, end: 1, frameRate },
+            { key: 'stuck-run', prefix: 'stuck-run', start: 1, end: 6, frameRate }
         ]);
 
         this.scene.start('play');
