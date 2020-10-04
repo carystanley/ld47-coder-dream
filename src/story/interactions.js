@@ -129,6 +129,7 @@ export default {
                 },
                 go: () => {
                     scene.setStoryState('hasConsoleLog', true);
+                    scene.setStoryState('sceneStuckGuy', true);
                 }
             }
         });
@@ -226,8 +227,13 @@ export default {
                     { text: 'You noticed my arms?' },
                     { text: 'Yup, I\'m stuck like this' },
                     { text: 'I need an Animation loop' },
-                    { text: 'so I can move' }
-                ]
+                    { text: 'so I can move', key: 'unlockForest' }
+                ],
+                actions: {
+                    unlockForest: () => {
+                        scene.setStoryState('sceneForest', true);
+                    }
+                }
             });
         }
     },
@@ -373,6 +379,10 @@ export default {
     onExitRightExit: async (scene, state, player, entity) => {
         await scene.movePlayerTo(entity.x, player.y);
         scene.scene.restart({ scene: sceneNavigation(scene, scene.sceneId, 1), enter: 'left' });
+
+        if (!scene.getStoryState('sceneWizard')) {
+            scene.setStoryState('sceneWizard', true);
+        }
     },
 
     default: async (scene, state, player, entity) => {
