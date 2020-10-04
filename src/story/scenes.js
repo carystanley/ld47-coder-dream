@@ -22,7 +22,7 @@ export default {
             scene.player.y = 350;
             scene.startConversation(scene.player, {
                 dialog: [
-                    { text: 'No Pants??' },
+                    { text: 'No Pants!?!?' },
                     { text: 'I must be dreaming' },
                     { text: 'Oh No!!' },
                     { text: 'I must have fallen asleep' },
