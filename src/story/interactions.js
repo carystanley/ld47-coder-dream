@@ -200,7 +200,36 @@ export default {
     },
 
     onTalkStuckGuy: async (scene, state, player, entity) => {
-        // TODO (stuck, loop, stuck-again)
+        await scene.movePlayerTo(entity.x - 80, entity.y + 20);
+        scene.playerFaceRight();
+
+        const hasTrued = scene.getStoryState('hasTrued');
+        const hasWhiled = scene.getStoryState('hasWhiled');
+
+        if (hasTrued) {
+            scene.startConversation(entity, {
+                dialog: [
+                    { text: 'Just don\'t' }
+                ]
+            });
+        } else if (hasWhiled) {
+            scene.startConversation(entity, {
+                dialog: [
+                    { text: 'Did you find something' },
+                    { text: 'to trigger the end condition' }
+                ]
+            });
+        } else {
+            scene.startConversation(entity, {
+                dialog: [
+                    { text: 'Sup?' },
+                    { text: 'You noticed my arms?' },
+                    { text: 'Yup, I\'m stuck like this' },
+                    { text: 'I need an Animation loop' },
+                    { text: 'so I can move' }
+                ]
+            });
+        }
     },
 
     onWhileStuckGuy: async (scene, state, player, entity) => {
