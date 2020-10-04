@@ -22,8 +22,13 @@ export default {
             scene.player.y = 350;
             scene.startConversation(scene.player, {
                 dialog: [
+                    { text: 'No Pants??' },
+                    { text: 'I must be dreaming' },
                     { text: 'Oh No!!' },
-                    { text: 'No Pants!?!' }
+                    { text: 'I must have fallen asleep' },
+                    { text: 'I\'ve got to wake up' },
+                    { text: 'and finish' },
+                    { text: 'my GameJam entry' }
                 ]
             });
         }
