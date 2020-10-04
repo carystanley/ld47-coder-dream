@@ -21,10 +21,10 @@ export default class HUD {
 
         this.addActionText('while', 106, 'While', 'hasWhile');
         this.addActionText('true', 200, 'True', 'hasTrue');
-        this.addActionText('{', 276, 'RightBracket', 'hasRightBracket');
+        this.addActionText('{', 276, 'LeftBracket', 'hasLeftBracket');
         this.addActionText('console.log', 300, 'ConsoleLog', 'hasConsoleLog');
         this.addActionText('(\'the end\')', 476, 'TheEnd', 'hasTheEnd');
-        this.addActionText('}', 642, 'LeftBraket', 'hasLeftBracket');
+        this.addActionText('}', 642, 'RightBracket', 'hasRightBracket');
     }
 
     addActionText(text, startX, action, stateFlag) {

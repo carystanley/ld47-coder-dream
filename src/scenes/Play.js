@@ -17,9 +17,9 @@ const actionToCursor = {
 
     While: { cursor: 'crosshair', text: 'while'},
     True: { cursor: 'crosshair', text: 'true'},
-    RightBracket: { cursor: 'crosshair', text: '{'},
+    RightBracket: { cursor: 'crosshair', text: '}'},
     ConsoleLog: { cursor: 'crosshair', text: 'console.log'},
-    LeftBraket: { cursor: 'crosshair', text: '}'}
+    LeftBracket: { cursor: 'crosshair', text: '{'}
 };
 
 class Play extends Phaser.Scene {

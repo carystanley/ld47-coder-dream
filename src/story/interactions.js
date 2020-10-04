@@ -39,9 +39,9 @@ export default {
             computerText = 'FILE NOT FOUND';
         } else if (hasConsoleLog && !hasRightBracket && !hasLeftBracket && !hasTrue && !hasWhile) {
             computerText = '.....';
-        } else if (!hasRightBracket && hasLeftBracket) {
-            computerText = 'SyntaxError: Unexpected token }';
         } else if (hasRightBracket && !hasLeftBracket) {
+            computerText = 'SyntaxError: Unexpected token }';
+        } else if (!hasRightBracket && hasLeftBracket) {
             computerText = 'SyntaxError: Unexpected end of input';
         } else if (hasRightBracket && hasLeftBracket && (hasWhile || hasTrue)) {
             computerText = 'SyntaxError: Unexpected token {';
@@ -54,8 +54,6 @@ export default {
                 { text: computerText }
             ]
         });
-
-        // TODO errors till has all the items
     },
 
     onTalkWizard: async (scene, state, player, entity) => {
@@ -139,19 +137,66 @@ export default {
     onTalkErrorGuy: async (scene, state, player, entity) => {
         await scene.movePlayerTo(entity.x + 80, entity.y + 20);
         scene.playerFaceLeft();
+
+        const hasFixedBracket = scene.getStoryState('hasFixedBracket');
+
         scene.startConversation(entity, {
             dialog: [
-                { text: '0xE84FC80A580' }
+                { text: hasFixedBracket ?
+                    'Thank You!' :
+                    '0xE84FC80A580'
+                }
             ]
         });
     },
 
     onConsoleLogErrorGuy: async (scene, state, player, entity) => {
-        // TODO Show Error message
+        await scene.movePlayerTo(entity.x + 80, entity.y + 20);
+        scene.playerFaceLeft();
+
+        const hasFixedBracket = scene.getStoryState('hasFixedBracket');
+
+        scene.startConversation(entity, {
+            dialog: [
+                { text: hasFixedBracket ?
+                    'That tickles' :
+                    'SyntaxError: Unexpected end of input'
+                }
+            ]
+        });
     },
 
     onRightBracketErrorGuy: async (scene, state, player, entity) => {
-        // TODO Fix error
+        await scene.movePlayerTo(entity.x + 80, entity.y + 20);
+        scene.playerFaceLeft();
+
+        const hasFixedBracket = scene.getStoryState('hasFixedBracket');
+
+        if (hasFixedBracket) {
+            scene.startConversation(entity, {
+                dialog: [
+                    { text: 'Hey! cut it out!' }
+                ]
+            });
+        } else {
+            scene.startConversation(entity, {
+                dialog: [
+                    { text: 'You\'ve Fixed me!', key: 'fixed' },
+                    { text: 'Thank you!!' },
+                    { text: 'It\'s Dangerous to Go Alone' },
+                    { text: 'Take this \'while\'', key: 'give' }
+                ],
+                actions: {
+                    fixed: () => {
+                        entity.play('error-fix');
+                        scene.setStoryState('hasFixedBracket', true);
+                    },
+                    give: () => {
+                        scene.setStoryState('hasWhile', true);
+                    }
+                }
+            });
+        }
     },
 
     onTalkStuckGuy: async (scene, state, player, entity) => {

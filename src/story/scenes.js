@@ -38,7 +38,7 @@ export default {
 
         const hasFixedBracket = scene.getStoryState('hasFixedBracket');
         const errorAnim = hasFixedBracket ? 'error-fix' : 'missingno';
-        scene.errorGuy = new Interactable(scene, errorAnim, 'ErrorGuy', 'Talk', 200, 300, 6);
+        scene.errorGuy = new Interactable(scene, errorAnim, 'ErrorGuy', 'Talk', 300, 300, 6);
     },
 
     Wizard: (scene, config) => {
