@@ -1,4 +1,4 @@
-
+import sceneNavigation from './sceneNavigation';
 
 export default {
     onTalkComputer: async (scene, state, player, entity) => {
@@ -120,12 +120,12 @@ export default {
 
     onExitLeftExit: async (scene, state, player, entity) => {
         await scene.movePlayerTo(entity.x, player.y);
-        scene.scene.restart({ scene: 'Start', enter: 'right' });
+        scene.scene.restart({ scene: sceneNavigation(scene, scene.sceneId, 1), enter: 'right' });
     },
 
     onExitRightExit: async (scene, state, player, entity) => {
         await scene.movePlayerTo(entity.x, player.y);
-        scene.scene.restart({ scene: 'Start', enter: 'left' });
+        scene.scene.restart({ scene: sceneNavigation(scene, scene.sceneId, -1), enter: 'left' });
     },
 
     default: async (scene, state, player, entity) => {
