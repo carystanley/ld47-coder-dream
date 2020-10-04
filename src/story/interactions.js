@@ -204,11 +204,65 @@ export default {
     },
 
     onWhileStuckGuy: async (scene, state, player, entity) => {
-        // TODO startLoop
+        await scene.movePlayerTo(entity.x - 80, entity.y + 20);
+        scene.playerFaceRight();
+
+        const hasWhiled = scene.getStoryState('hasWhiled');
+        if (hasWhiled) {
+            scene.startConversation(entity, {
+                dialog: [
+                    { text: 'Stop it!' }
+                ]
+            });
+        } else {
+            scene.startConversation(entity, {
+                dialog: [
+                    { text: 'You\'ve Fixed me!', key: 'fixed' },
+                    { text: 'NOT!!' },
+                    { text: 'This is much worse' },
+                    { text: 'I need something' },
+                    { text: 'to trigger a condition' },
+                    { text: 'to get out of this loop' }
+                ],
+                actions: {
+                    fixed: () => {
+                        entity.play('stuck-run');
+                        scene.setStoryState('hasWhiled', true);
+                    }
+                }
+            });
+        }
     },
 
     onTrueStuckGuy: async (scene, state, player, entity) => {
-        // TODO stopLoop
+        await scene.movePlayerTo(entity.x - 80, entity.y + 20);
+        scene.playerFaceRight();
+
+        const hasTrued = scene.getStoryState('hasTrued');
+        const hasWhiled = scene.getStoryState('hasWhiled');
+
+        if (hasTrued || !hasWhiled ) {
+            scene.startConversation(entity, {
+                dialog: [
+                    { text: 'Quit it!' }
+                ]
+            });
+        } else {
+            scene.startConversation(entity, {
+                dialog: [
+                    { text: 'What!?!', key: 'fixed' },
+                    { text: 'Seriously?' },
+                    { text: 'You had to stop it' },
+                    { text: 'HERE' }
+                ],
+                actions: {
+                    fixed: () => {
+                        entity.play('stuck-stuck');
+                        scene.setStoryState('hasTrued', true);
+                    }
+                }
+            });
+        }
     },
 
     onConsoleLogExpression1: async (scene, state, player, entity) => {
