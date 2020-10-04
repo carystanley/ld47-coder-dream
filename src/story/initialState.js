@@ -1,7 +1,8 @@
 export default {
-    roomStart: true,
-    roomWizard: false,
-    roomWhile: false,
+    sceneStart: true,
+    sceneWizard: false,
+    sceneStuckGuy: false,
+    sceneForest: false,
 
     computerTalkCount: 0, // Remove
     hasDoneIntro: false,

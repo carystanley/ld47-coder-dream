@@ -14,6 +14,12 @@ export default function sceneNavigation(scene, sceneId, direction) {
     const totalScenes = scenesOrder.length;
     const sceneIndex = scenesOrder.indexOf(sceneId);
     let cursor = sceneIndex;
-    cursor = mod(cursor + direction, totalScenes);
+    let count = 0;
+
+    do {
+        cursor = mod(cursor + direction, totalScenes);
+        count++;
+        console.error(!scene.getStoryState('Scene' + scenesOrder[cursor]));
+    } while (!scene.getStoryState('Scene' + scenesOrder[cursor]) && (count < totalScenes));
     return scenesOrder[cursor];
 }
