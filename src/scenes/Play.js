@@ -62,7 +62,7 @@ class Play extends Phaser.Scene {
         this.mode = 'explore';
         this.currentAction = null;
         this.hud = new HUD(this);
-        this.sceneId = config.scene || 'Start';
+        this.sceneId = config.scene || this.getStoryState('startScene');;
         storyScenes[this.sceneId](this, config);
     }
 
