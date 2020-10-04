@@ -93,7 +93,7 @@ export default {
             {
                 'spaces': [
                     { text: 'But tabs save file size!' },
-                    { text: 'and developers can adjust' },
+                    { text: 'Developers can adjust' },
                     { text: 'indentation in their editor', key: 'spaces' }
                 ]
             }
@@ -114,7 +114,7 @@ export default {
                 { text: 'YOU SHALL NOT PASS!' },
                 { text: 'You must answer my question' },
                 { text: 'That I may know if thee is' },
-                { text: 'FOE or FRIEND' },
+                { text: 'FRIEND or FOE' },
                 {
                     text: 'Tabs or Spaces?',
                     responses: wizardChoices
@@ -287,7 +287,8 @@ export default {
                 dialog: [
                     { text: 'What!?!', key: 'fixed' },
                     { text: 'Seriously?' },
-                    { text: 'You had to stop it' },
+                    { text: 'You had to stop' },
+                    { text: 'the animation' },
                     { text: 'HERE' }
                 ],
                 actions: {
@@ -333,7 +334,7 @@ export default {
         scene.startConversation(player, {
             dialog: [
                 { text: 'false' },
-                { text: 'Come on?' },
+                { text: 'Come on!' },
                 { text: 'Well, that\'s JavaScript' }
             ]
         });
