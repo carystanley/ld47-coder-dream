@@ -13,7 +13,25 @@ export default {
         var computerText = '';
 
         if ( hasConsoleLog && hasRightBracket && hasLeftBracket && hasTrue && hasWhile ) {
-            // TODO END
+            scene.startConversation(player, {
+                dialog: [
+                    { text: '(\'the' },
+                    { text: ' end\')' },
+                    { text: 'It\'s Finally Finished!!', key: 'done' },
+                    { text: 'Now I can wakeup from' },
+                    { text: 'this Endless Dream' },
+                    { text: 'Thanks for Playing!' },
+                    { key: 'theend'}
+                ],
+                actions: {
+                    done: () => {
+                        scene.setStoryState('hasTheEnd', true);
+                    },
+                    theend: async () => {
+                        await scene.fadeOut();
+                    }
+                }
+            });
             return;
         }
 
