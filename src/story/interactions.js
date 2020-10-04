@@ -29,6 +29,7 @@ export default {
                     },
                     theend: async () => {
                         await scene.fadeOut();
+                        scene.scene.start('gameover');
                     }
                 }
             });

@@ -3,6 +3,7 @@ import * as Phaser from 'phaser';
 import Boot from './scenes/Boot.js';
 import Preloader from './scenes/Preloader.js';
 import Play from './scenes/Play.js';
+import GameOver from './scenes/GameOver.js';
 
 var config = {
     parent : 'game',
@@ -19,7 +20,8 @@ var config = {
     scene: [
         Boot,
         Preloader,
-        Play
+        Play,
+        GameOver
     ],
     antialias: false,
     pixelArt: true,
