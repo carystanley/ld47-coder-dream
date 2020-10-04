@@ -15,12 +15,15 @@ class Preloader extends Phaser.Scene {
 
         this.load.bitmapFont('nokia-font', 'fonts/nokia.png', 'fonts/nokia.xml');
 
-        let progress = this.add.graphics();
+        const backgroundRect = this.add.graphics();
+        backgroundRect.fillStyle(0x000000);
+        backgroundRect.fillRect(0, 0, 800, 600);
 
+        let progress = this.add.graphics();
         this.load.on('progress', function (value) {
             progress.clear();
-            progress.fillStyle(0xdff9fb, 1);
-            progress.fillRect(0, (220 / 2) - 30, 256 * value, 60);
+            progress.fillStyle(0xffffff);
+            progress.fillRect(0, (600 / 2) - 30, 800 * value, 60);
         });
 
         this.load.on('complete', function () {
