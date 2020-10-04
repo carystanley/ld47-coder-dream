@@ -124,6 +124,75 @@ export default {
         // TODO Fix error
     },
 
+    onTalkStuckGuy: async (scene, state, player, entity) => {
+        // TODO (stuck, loop, stuck-again)
+    },
+
+    onWhileStuckGuy: async (scene, state, player, entity) => {
+        // TODO startLoop
+    },
+
+    onTrueStuckGuy: async (scene, state, player, entity) => {
+        // TODO stopLoop
+    },
+
+    onConsoleLogExpression1: async (scene, state, player, entity) => {
+        // typeof NaN --> number
+        await scene.movePlayerTo(entity.x + 80, entity.y + 20);
+        scene.playerFaceLeft();
+        scene.startConversation(player, {
+            dialog: [
+                { text: 'number' },
+                { text: 'Seriously?' },
+                { text: 'Well, that\'s JavaScript' }
+            ]
+        });
+    },
+
+    onConsoleLogExpression2: async (scene, state, player, entity) => {
+        // Number(true) -> 1
+        await scene.movePlayerTo(entity.x + 120, entity.y + 40);
+        scene.playerFaceLeft();
+        scene.startConversation(player, {
+            dialog: [
+                { text: ' 1 ' },
+                { text: 'huh?' },
+                { text: 'Well, that\'s JavaScript' }
+            ]
+        });
+    },
+
+    onConsoleLogExpression3: async (scene, state, player, entity) => {
+        // 3 > 2 > 1 -> false
+        await scene.movePlayerTo(entity.x - 80, entity.y + 20);
+        scene.playerFaceRight();
+        scene.startConversation(player, {
+            dialog: [
+                { text: 'false' },
+                { text: 'Come on?' },
+                { text: 'Well, that\'s JavaScript' }
+            ]
+        });
+    },
+
+    onConsoleLogExpression4: async (scene, state, player, entity) => {
+        // [] == ![] -> true
+        await scene.movePlayerTo(entity.x - 80, entity.y + 20);
+        scene.playerFaceRight();
+        scene.startConversation(player, {
+            dialog: [
+                { text: 'true', key: 'gotit' },
+                { text: 'whatever!' },
+                { text: 'Well, that\'s JavaScript' }
+            ],
+            actions: {
+                gotit: () => {
+                    scene.setStoryState('hasTrue', true);
+                }
+            }
+        });
+    },
+
     onGetRightBracket: async (scene, state, player, entity) => {
         // TODO hasRightBracket true
         await scene.movePlayerTo(entity.x, entity.y);
@@ -138,42 +207,14 @@ export default {
         entity.hide();
     },
 
-    onTalkStuckGuy: async (scene, state, player, entity) => {
-        // TODO (stuck, loop, stuck-again)
-    },
-
-    onWhileStuckGuy: async (scene, state, player, entity) => {
-        // TODO startLoop
-    },
-
-    onTrueStuckGuy: async (scene, state, player, entity) => {
-        // TODO stopLoop
-    },
-
-    onConsoleLogExpression1: async (scene, state, player, entity) => {
-        // TODO
-    },
-
-    onConsoleLogExpression2: async (scene, state, player, entity) => {
-        // TODO
-    },
-
-    onConsoleLogExpression3: async (scene, state, player, entity) => {
-        // TODO
-    },
-
-    onConsoleLogExpression4: async (scene, state, player, entity) => {
-        // TODO
-    },
-
     onExitLeftExit: async (scene, state, player, entity) => {
         await scene.movePlayerTo(entity.x, player.y);
-        scene.scene.restart({ scene: sceneNavigation(scene, scene.sceneId, 1), enter: 'right' });
+        scene.scene.restart({ scene: sceneNavigation(scene, scene.sceneId, -1), enter: 'right' });
     },
 
     onExitRightExit: async (scene, state, player, entity) => {
         await scene.movePlayerTo(entity.x, player.y);
-        scene.scene.restart({ scene: sceneNavigation(scene, scene.sceneId, -1), enter: 'left' });
+        scene.scene.restart({ scene: sceneNavigation(scene, scene.sceneId, 1), enter: 'left' });
     },
 
     default: async (scene, state, player, entity) => {
