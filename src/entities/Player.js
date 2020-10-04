@@ -1,6 +1,8 @@
 import { tweenPromise } from '../utils/async';
 
 const WALK_VELOCITY = 200;
+const Y_MAX = 500;
+const Y_MIN = 200;
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene) {
@@ -33,7 +35,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.setFlipX(true);
     }
 
-    async moveTo (x, y) {
+    async moveTo (targetX, targetY) {
+        const y = Math.max(Y_MIN, Math.min(Y_MAX, targetY));
+        const x = targetX;
         const dx = x - this.x;
         const dy = y - this.y;
 

@@ -13,7 +13,7 @@ export default {
         */
 
 
-        await scene.movePlayerTo(entity.x - 80, entity.y);
+        await scene.movePlayerTo(entity.x - 80, entity.y + 20);
         scene.playerFaceRight();
 
         var computerText = 'FILE NOT FOUND'
